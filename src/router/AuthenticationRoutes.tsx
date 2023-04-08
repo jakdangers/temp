@@ -1,13 +1,13 @@
-import Login from "../page/Login";
+import Login from '../page/Login';
 
 const AuthenticationRoutes = {
   path: '/',
   children: [
     {
       path: '/login',
-      element: <Login />
+      element: <Login />,
     },
-  ]
+  ],
 };
 
 export default AuthenticationRoutes;

@@ -1,17 +1,16 @@
-import React, {useEffect} from 'react'
-import ReactDOM from 'react-dom/client'
-import App from "./App";
-import {RecoilRoot} from "recoil";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { RecoilRoot } from 'recoil';
+import App from './App';
 
 function Root() {
   return (
     <React.StrictMode>
       <RecoilRoot>
-        <App/>
+        <App />
       </RecoilRoot>
     </React.StrictMode>
   );
 }
 
-
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(<Root/>);
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(<Root />);

@@ -1,5 +1,5 @@
-import ErrorPage from "../page/ErrorPage";
-import Index from "../layout/MainLayout";
+import ErrorPage from '../page/ErrorPage';
+import Index from '../layout/MainLayout';
 
 export const InspectionRoutes = {
   path: '/',
@@ -10,6 +10,5 @@ export const InspectionRoutes = {
       path: '/inspection',
       element: <div>inspection</div>,
     },
-  ]
+  ],
 };
-

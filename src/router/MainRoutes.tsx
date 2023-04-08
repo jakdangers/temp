@@ -1,7 +1,7 @@
-import ErrorPage from "../page/ErrorPage";
-import ProtectedRoute from "./ProtectedRoute";
-import MainLayout from "../layout/MainLayout";
-import Home from "../page/Home";
+import ErrorPage from '../page/ErrorPage';
+import ProtectedRoute from './ProtectedRoute';
+import MainLayout from '../layout/MainLayout';
+import Home from '../page/Home';
 
 const MainRoutes = {
   path: '/',
@@ -10,9 +10,13 @@ const MainRoutes = {
   children: [
     {
       path: '/',
-      element: <ProtectedRoute roles={['owner']} permissions={['1']}><Home /></ProtectedRoute>,
+      element: (
+        <ProtectedRoute roles={['owner']} permissions={['1']}>
+          <Home />
+        </ProtectedRoute>
+      ),
     },
-  ]
+  ],
 };
 
 export default MainRoutes;
