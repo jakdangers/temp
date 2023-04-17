@@ -9,13 +9,20 @@ export interface SidebarRouter {
 
 export const sidebarRouters: SidebarRouter[] = [
   {
-    title: 'Home',
+    title: 'dashboard',
     path: '/',
     Icon: <HomeIcon />,
+    children: [
+      {
+        title: 'inspection',
+        path: '/a/b',
+        Icon: <HomeIcon />,
+      },
+    ],
   },
   {
     title: 'inspection',
     path: '/inspection',
     Icon: <HomeIcon />,
-  }
+  },
 ];

@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
 import { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 
-export function useAxiosGet<TResponse, TParams = {}>(
+export function useAxiosGet<TResponse, TParams = object>(
   axiosInstance: AxiosInstance,
   url: string,
-  initialParams: TParams | null = null,
+  initialParams: TParams | null = null
 ): [() => Promise<void>, TResponse | null, boolean, AxiosError | null] {
   const [data, setData] = useState<TResponse | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -12,28 +12,27 @@ export function useAxiosGet<TResponse, TParams = {}>(
 
   const fetchData = useCallback(
     async (params: TParams | null = null) => {
-      console.log(params);
-      //   setIsLoading(true);
-        try {
-          const response: AxiosResponse<TResponse> = await axiosInstance.get(
-            url,
-            {
-              params: {
-                ...params,
-              },
+      setIsLoading(true);
+      try {
+        const response: AxiosResponse<TResponse> = await axiosInstance.get(
+          url,
+          {
+            params: {
+              ...params,
             },
-          );
-          setData(response.data);
-        } catch (err) {
-          if (err instanceof AxiosError) {
-            setData(null);
-            setError(err);
           }
-        } finally {
-          setIsLoading(false);
+        );
+        setData(response.data);
+      } catch (err) {
+        if (err instanceof AxiosError) {
+          setData(null);
+          setError(err);
         }
-      },
-    [axiosInstance, url],
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [axiosInstance, url]
   );
 
   const sendRequest = useCallback(async () => {

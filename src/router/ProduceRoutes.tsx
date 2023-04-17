@@ -1,7 +1,7 @@
-import ErrorPage from '../page/ErrorPage';
-import Index from '../layout/MainLayout';
+import ErrorPage from '../app/ErrorPage';
+import Index from '../layout/mainLayout';
 
-export const InspectionRoutes = {
+const ProduceRoutes = {
   path: '/',
   element: <Index />,
   errorElement: <ErrorPage />,
@@ -12,3 +12,5 @@ export const InspectionRoutes = {
     },
   ],
 };
+
+export default ProduceRoutes;

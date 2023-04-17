@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 
-export function useAxiosGetOnLoad<TResponse, TParams = {}>(
+export default function useAxiosGetOnLoad<TResponse, TParams = object>(
   axiosInstance: AxiosInstance,
   url: string,
-  initialParams: TParams | null = null,
+  initialParams: TParams | null = null
 ): [TResponse | null, boolean, AxiosError | null] {
   const [data, setData] = useState<TResponse | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -17,7 +17,7 @@ export function useAxiosGetOnLoad<TResponse, TParams = {}>(
           url,
           {
             params: initialParams ? { ...initialParams } : undefined,
-          },
+          }
         );
         setData(response.data);
       } catch (err) {

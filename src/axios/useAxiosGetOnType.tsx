@@ -8,17 +8,17 @@ import axios, {
 
 import { useDebounce } from '../hook/useDebounce';
 
-export function useAxiosGetOnType<TParams, TResponse = {}>(
+export default function useAxiosGetOnType<TParams, TResponse = object>(
   axiosInstance: AxiosInstance,
   url: string,
   initialParams: TParams,
   initialData: TResponse | null,
-  debounceTime: number = 500,
+  debounceTime = 500
 ): [
   TResponse | null,
   boolean,
   AxiosError | null,
-  (searchTerm: TParams) => void,
+  (searchTerm: TParams) => void
 ] {
   const [data, setData] = useState<TResponse | null>(initialData);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -45,7 +45,7 @@ export function useAxiosGetOnType<TParams, TResponse = {}>(
               ...debouncedParams,
             },
             cancelToken: source.token,
-          },
+          }
         );
         setData(response.data);
       } catch (err) {
@@ -61,6 +61,7 @@ export function useAxiosGetOnType<TParams, TResponse = {}>(
       }
     };
     fetchData();
+    // eslint-disable-next-line consistent-return
     return () => {
       if (cancelTokenSource) {
         cancelTokenSource.cancel('Request cancelled.');

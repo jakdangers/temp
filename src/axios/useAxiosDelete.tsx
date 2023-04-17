@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
 import { AxiosError, AxiosInstance } from 'axios';
 
-export function useAxiosDelete<TParams>(
+export default function useAxiosDelete<TParams>(
   axiosInstance: AxiosInstance,
   url: string,
-  initialParams: TParams | null = null,
+  initialParams: TParams | null = null
 ): [() => Promise<void>, number | null, boolean, AxiosError | null] {
   const [data, setData] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -28,7 +28,7 @@ export function useAxiosDelete<TParams>(
         setIsLoading(false);
       }
     },
-    [axiosInstance, url],
+    [axiosInstance, url]
   );
 
   const sendRequest = useCallback(async () => {

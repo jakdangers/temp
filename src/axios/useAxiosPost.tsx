@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 
-export function useAxiosPost<TRequest, TResponse = {}>(
+export default function useAxiosPost<TRequest, TResponse = object>(
   axiosInstance: AxiosInstance,
   url: string,
-  initialData: TResponse | null = null,
+  initialData: TResponse | null = null
 ): [TResponse | null, boolean, AxiosError | null, (data: TRequest) => void] {
   const [data, setData] = useState<TResponse | null>(initialData);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -15,7 +15,7 @@ export function useAxiosPost<TRequest, TResponse = {}>(
     try {
       const response: AxiosResponse<TResponse> = await axiosInstance.post(
         url,
-        dataToSend,
+        dataToSend
       );
       setData(response.data);
     } catch (err) {
